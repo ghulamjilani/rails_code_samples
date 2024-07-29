@@ -1,1 +1,1 @@
-# rails_code_samples
+# Rails Code Samples
