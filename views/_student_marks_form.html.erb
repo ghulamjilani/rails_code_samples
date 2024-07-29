@@ -1,0 +1,57 @@
+<div class="px-2" data-subject="<%= student.current_subject&.name&.downcase %>" data-student-id="<%= student.id %>">
+  <%= form_with model: model, url: url, method: method, data: { turbo: false } do |form| %>
+    <div class="mb-3">
+      <%= form.label 'Date of sabaq', class: 'form-label' %>
+      <%= form.date_field :created_at, class: 'form-control form-control-md rounded-0' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :sabaq, class: 'form-label' %>
+      <%= sabaq_form_field(form, student) %>
+    </div>
+
+    <div class="mb-3">
+      <%= sabaqi_form_field(form, student) %>
+    </div>
+
+    <div class="mb-3">
+      <%= manzil_form_field(form, student) %>
+    </div>
+
+    <div class="mb-3" data-controller="scores">
+      <%= form.label :feedback, 'Feedback', class: 'form-label' %>
+      <%= form.select(:feedback, options_for_select(feedback_options, model.feedback),
+                      { prompt: '-- Please Select --' },
+                      class: 'form-control form-control-md rounded-0', required: true,
+                      data: { action: 'change->scores#toggleOtherFeeback', 'scores-target': 'feedbackSelect' }) %>
+    </div>
+
+    <div class="mb-3 <%= hide_if_other_feedback(form) %>" id="other_feedback_<%= student.id %>">
+      <%= form.label :other_feedback, 'Your Thoughts', class: 'form-label' %>
+      <%= form.text_area :other_feedback, class: 'form-control form-control-md rounded-0', placeholder: 'Please type here...', rows: 3 %>
+    </div>
+
+    <%= form.hidden_field :user_id, value: current_user.teacher? ? current_user.id : student.current_teacher&.id %>
+    <%= form.hidden_field :subject_id, value: student.current_subject&.id %>
+    <%= form.hidden_field :subject_type, value: student.current_subject&.name %>
+
+    <% if params[:standard_id].present? %>
+      <%= form.hidden_field :standard_id, value: params[:standard_id] %>
+    <% end %>
+    <% if params[:subject_id].present? %>
+      <%= form.hidden_field :sub_id, value: params[:subject_id] %>
+    <% end %>
+
+    <% unless model.id.nil? %>
+      <%= form.hidden_field :id, value: model.id %>
+    <% end %>
+
+    <div class="row mt-3">
+      <div class="container">
+        <div class="col-md-12 d-flex justify-content-end">
+          <%= form.submit 'Proceed', class: "btn btn-outline-success rounded-pill px-4 p-2 my-2" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
