@@ -1,0 +1,289 @@
+.nav-menu {
+  padding: 0 12px;
+  font-family: 'Inter', sans-serif;
+  padding-top: 50px;
+  position: relative;
+  background-color: white;
+  -webkit-box-shadow: 1px 20px 15px 2px rgba(0,0,0,0.08);
+  box-shadow: 1px 5px 15px 2px rgba(0,0,0,0.08);
+  max-width: 277px;
+  min-height: calc(100vh - 87px);
+  position: relative;
+
+  @media screen and (max-width: 767px) {
+    max-width: 76px !important;
+  }
+
+  > div {
+    z-index: 3;
+    position: relative;
+  }
+
+  &::before {
+    content: '';
+    background-color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 6000px;
+    z-index: 2;
+  }
+
+  &__toggle {
+    background: #fff asset-data-url('icons/double_arrows_left_icon.svg') center no-repeat;
+    background-size: 16px auto;
+    border-radius: 50%;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 8px;
+    right: -15px;
+    z-index: 2;
+
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &--minimized {
+    max-width: 76px;
+
+    .nav-menu__toggle {
+      background: #fff asset-data-url('icons/double_arrows_right_icon.svg') center no-repeat;
+      background-size: 16px auto;
+
+      svg {
+        transform: rotate(0deg);
+      }
+    }
+
+    li {
+      width: 52px;
+      height: 52px;
+      padding: 0;
+      &.active {
+        a {
+          color: #00A47C;
+          &.home {
+            background: #E6F6F2 asset-data-url('sidebar_icons/active/home.svg') left 14px center no-repeat !important;
+            background-size: 24px auto;
+          }
+          &.connections {
+            background: #E6F6F2 asset-data-url('sidebar_icons/active/connections.svg') left 14px center no-repeat !important;
+            background-size: 24px auto;
+          }
+          &.groups {
+            background: #E6F6F2 asset-data-url('sidebar_icons/active/groups.svg') left 14px center no-repeat !important;
+            background-size: 24px auto;
+          }
+          &.papers {
+            background: #E6F6F2 asset-data-url('sidebar_icons/active/papers.svg') left 14px center no-repeat !important;
+            background-size: 24px auto;
+          }
+          &.settings {
+            background: #E6F6F2 asset-data-url('sidebar_icons/active/settings.svg') left 14px center no-repeat !important;
+            background-size: 24px auto;
+          }
+          svg {
+            fill: #00A47C;
+          }
+        }
+      }
+      a {
+        display: inline-block !important;
+        width: 52px;
+        height: 52px;
+        padding: 0 !important;
+        &.home {
+          background: transparent asset-data-url('sidebar_icons/home.svg') center no-repeat !important;
+          background-size: 24px auto;
+        }
+        &.connections {
+          background: transparent asset-data-url('sidebar_icons/connections.svg') center no-repeat !important;
+          background-size: 24px auto;
+        }
+        &.groups {
+          background: transparent asset-data-url('sidebar_icons/groups.svg') center no-repeat !important;
+          background-size: 24px auto;
+        }
+        &.papers {
+          background: transparent asset-data-url('sidebar_icons/papers.svg') center no-repeat !important;
+          background-size: 24px auto;
+        }
+        &.settings {
+          background: transparent asset-data-url('sidebar_icons/settings.svg') center no-repeat !important;
+          background-size: 24px auto;
+        }
+        &.see_more {
+          background: transparent asset-data-url('sidebar_icons/see_more.svg') center no-repeat !important;
+          background-size: 36px auto;
+        }
+        svg {
+          margin-right: 0 !important;
+        }
+      }
+      span {
+        display: none;
+      }
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    max-width: 65px;
+
+    .nav-menu__toggle {
+      svg {
+        transform: rotate(0deg);
+      }
+    }
+
+    li {
+      a {
+        svg {
+          margin-right: 0 !important;
+        }
+      }
+      span {
+        display: none;
+      }
+    }
+  }
+
+
+  &--full {
+    ul {
+      li {
+        display: list-item !important;
+      }
+    }
+
+    .nav-menu__more {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+
+    li {
+      padding: 0;
+
+      &:nth-child(n+6) {
+        display: none;
+      }
+
+      &:last-child {
+        display: list-item;
+      }
+
+      svg {
+        fill: #8C9196;
+        width: 36px;
+      }
+      &.active {
+        a {
+          color: #00A47C;
+          &.home {
+            background: #E6F6F2 asset-data-url('sidebar_icons/active/home.svg') left 14px center no-repeat;
+            background-size: 24px auto;
+          }
+          &.connections {
+            background: #E6F6F2 asset-data-url('sidebar_icons/active/connections.svg') left 14px center no-repeat;
+            background-size: 24px auto;
+          }
+          &.groups {
+            background: #E6F6F2 asset-data-url('sidebar_icons/active/groups.svg') left 14px center no-repeat;
+            background-size: 24px auto;
+          }
+          &.papers {
+            background: #E6F6F2 asset-data-url('sidebar_icons/active/papers.svg') left 14px center no-repeat;
+            background-size: 24px auto;
+          }
+          &.settings {
+            background: #E6F6F2 asset-data-url('sidebar_icons/active/settings.svg') left 14px center no-repeat;
+            background-size: 24px auto;
+          }
+          svg {
+            fill: #00A47C;
+          }
+        }
+      }
+      a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+        color: #050505;
+        border-radius: 8px;
+        padding: 15px 0 15px 56px;
+
+        @media screen and (max-width: 767px) {
+          display: inline-block !important;
+          width: 52px;
+          height: 52px;
+          padding: 0 !important;
+        }
+
+        &.home {
+          background: transparent asset-data-url('sidebar_icons/home.svg') left 14px center no-repeat;
+          background-size: 24px auto;
+        }
+        &.connections {
+          background: transparent asset-data-url('sidebar_icons/connections.svg') left 14px center no-repeat;
+          background-size: 24px auto;
+        }
+        &.groups {
+          background: transparent asset-data-url('sidebar_icons/groups.svg') left 14px center no-repeat;
+          background-size: 24px auto;
+        }
+        &.papers {
+          background: transparent asset-data-url('sidebar_icons/papers.svg') left 14px center no-repeat;
+          background-size: 24px auto;
+        }
+        &.settings {
+          background: transparent asset-data-url('sidebar_icons/settings.svg') left 14px center no-repeat;
+          background-size: 24px auto;
+        }
+        &.see_more {
+          background: transparent asset-data-url('sidebar_icons/see_more.svg') left 6px center no-repeat;
+          background-size: 36px auto;
+        }
+        svg{
+          margin-right: 18px;
+        }
+      }
+    }
+  }
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu > .dropdown-menu {
+  top: 0 !important;
+  left: calc(-10rem - 8px);
+  margin-top: -6px;
+}
+
+.dropdown-submenu .dropdown-toggle {
+  background: transparent asset-data-url('nav_icons/arrow_right_icon.svg') right 8px center no-repeat;
+  background-size: 16px auto;
+
+  &::after {
+    display: none;
+  }
+}

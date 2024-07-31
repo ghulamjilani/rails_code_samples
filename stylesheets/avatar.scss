@@ -1,0 +1,74 @@
+.circular-file-input {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.circular-file-input input[type="file"] {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.circular-file-input .circle {
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
+  border: 2px dashed #bbb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 18px;
+  color: #bbb;
+}
+
+.circular-file-input:hover .circle {
+  border-color: #888;
+  color: #888;
+
+}
+.circular-file-input .circle svg {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.circular-file-input #imagePreview {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.circular-file-input.has-image #imagePreview {
+  display: block;
+}
+
+.stud-postcode.valid {
+  border-color: green; /* Set border color to green for valid input */
+}
+
+.stud-postcode.invalid {
+  border-color: red; /* Set border color to red for invalid input */
+}
+
+.postcode-validation-label {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  display: none; /* Initially hide the validation label */
+}
+
+.select2 {
+  width: 100% !important;
+}
