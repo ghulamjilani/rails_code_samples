@@ -5,6 +5,11 @@ I have structured this repository for introductory or reference purpose regardin
 /rails_code_samples
 │
 ├── /controllers                        # Controller files
+│   │    /api
+│   │    │  /v1
+│   │    │  ├── attendance_controller.rb
+│   │    │  ├── books_controller.rb
+│   │    │  └── courses_controller.rb
 │   ├── communities_controller.rb
 │   ├── courses_controller.rb                      
 │   ├── madrassas_controller.rb                                   
@@ -21,6 +26,14 @@ I have structured this repository for introductory or reference purpose regardin
 │   ├── scores_controller.js                                     
 │   └── validation_controller.js             
 │
+│
+├── /ReactJS                            # ReactJS files
+│   ├── auth.js                      
+│   ├── CoursesCard.jsx
+│   ├── CoursesPage.jsx
+│   ├── excelExport.jsx                        
+│   └── textField.jsx
+│
 ├── /models                             # Model files
 │   ├── ability.rb                      
 │   ├── company.rb
@@ -34,6 +47,19 @@ I have structured this repository for introductory or reference purpose regardin
 │   ├── pay_installment.rb               
 │   └── verify.rb                        
 │
+│
+├── /spec                               # Spec files   
+│   │  /controllers
+│   │  ├── loan_offers_controller_spec.rb
+│   │  └── matchups_controller_spec.rb
+│   │  
+│   │  /features
+│   │  ├── connections_spec.rb
+│   │  └── user_makes_a_pick_spec.rb
+│   │  
+│   │  /models
+│   │  └── web_state_spec.rb
+│                                      
 ├── /stylesheets                        # CSS / SCSS files
 │   ├── add_session.scss
 │   ├── avatar.scss     
@@ -50,6 +76,22 @@ I have structured this repository for introductory or reference purpose regardin
 ### Controllers
 
 ---
+
+#### API / V1
+
+---
+
+###### AttendanceController
+This controller manages attendance data with actions for listing, recording, updating, and marking attendance. It follows best practices such as query filtering, pagination, eager loading for performance, and robust error handling. The controller ensures data integrity by validating employees, course registrations, and preventing duplicate entries.
+
+###### BooksController
+This controller manages book-related CRUD operations, content uploads, trashed books, and statistics. It follows best practices like authentication, strong parameters, eager loading, filtering, and pagination. Reusable concerns handle response generation and image URLs, with robust error handling for failed actions.
+
+###### CoursesController
+This controller manages CRUD operations and custom actions for courses, efficiently using before_action for DRY logic and includes for optimized queries. It follows best practices with strong parameters for security, dynamic scoping for filtering, and reusable methods for consistent response handling. Guard clauses are used to simplify logic flow.
+
+---
+
 #### CommunitiesController
 This controller class is managing community-related features such as event and webinar organization, member management, and document handling. The controller leverages various modules and concerns to streamline functionalities, including user authentication, role-based access control, and content management. Key features include importing members, handling community requests and invitations, and managing community-specific events and webinars.
 
@@ -107,6 +149,49 @@ The model class manages event details and interactions, supporting various types
 
 #### Student
 This model class manages student data with best practices, including efficient associations, validations for essential attributes, and scopes for flexible querying. It leverages Active Storage for image uploads and integrates with S3 for secure file handling. Callbacks are used for managing related records and sending notifications, ensuring robust data integrity and automated updates.
+
+### ReactJS
+
+---
+
+#### auth.js
+This file provides a set of API functions to manage authentication and user data operations. It uses a central handleApiRequest function to standardize API calls and includes functions for logging in, verifying OTP, resending OTP, fetching user details, and updating the user profile.
+
+#### CoursesCard.jsx
+This component displays a styled course card with details such as name, progress, and activity count. It adapts to screen size and course status (locked or unlocked) using Material UI components and icons. Navigation is handled based on user interactions, and PropTypes ensure type safety.
+
+#### CoursesPage.jsx
+This component displays a list of courses fetched from an API. It features a hero banner with breadcrumbs for navigation and a grid layout to present each course using the CoursesCard component. It uses React hooks for state management and data fetching, and Redux for accessing user information.
+
+#### excelExport.jsx
+This component allows users to download data as an Excel file. It uses ExcelJS to generate a formatted Excel sheet and file-saver to trigger the download. There is a button that initiates the export process.
+
+#### textField.jsx
+This component provides a styled text input field with an optional adornment and label. It features custom styles for the input field and label, with required field indication and support for right-to-left text direction.
+
+### Spec
+
+---
+
+#### Controllers
+###### LoanOffersControllerSpec
+RSpec tests for the Api::V1::LoanOffersController verify that the GET #index action retrieves loan offers for the current user, the POST #create action successfully creates a loan record, and the GET #show/ action displays loan offer details correctly.
+
+###### MatchupsControllerSpec
+The RSpec tests for MatchupsController cover the save_outcome and destroy actions. They check that for ties, the pool entry is knocked out and the matchup is marked complete, even with no picks. For winning teams, they ensure correct knockout status and week ID updates. The destroy tests confirm if a matchup is deleted based on associated picks.
+
+#### Features
+###### ConnectionsSepc
+These RSpec feature tests validate actions on connections. For pending connections, the tests confirm that users can approve or reject connections, verifying changes on the page accordingly. For active connections, the tests ensure users can remove connections, checking that the connection is successfully deleted.
+
+###### UserMakesAPickSpec
+These RSpec feature tests for user picks check two scenarios. In the first, users make a pick for an open week, verifying that the selected team appears on the page. In the second scenario, when the week is closed, the test confirms that an error alert is displayed, indicating that picks cannot be made.
+
+#### Models
+###### WebStateSpec
+These RSpec tests for web_state confirm that only one record can exist and verify the season_matches_week method. It allows moving to a new week within the same season but prevents switching to a week in a different season.
+
+---
 
 ### Services
 
